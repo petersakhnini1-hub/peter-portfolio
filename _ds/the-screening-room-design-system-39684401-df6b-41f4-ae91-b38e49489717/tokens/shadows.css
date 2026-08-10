@@ -1,0 +1,12 @@
+:root{
+--shadow-none:none;
+--shadow-elevation-1:0 2px 8px rgba(0,0,0,0.3),0 1px 2px rgba(0,0,0,0.4);
+--shadow-elevation-2:0 24px 64px rgba(0,0,0,0.5),0 8px 24px rgba(0,0,0,0.35);
+--shadow-elevation-3:0 40px 100px rgba(0,0,0,0.55),0 16px 40px rgba(0,0,0,0.4);
+--shadow-glow-orange:0 0 0 1px rgba(232,96,12,0.4),0 20px 56px rgba(232,96,12,0.22);
+--shadow-glow-gray:0 0 0 1px rgba(191,202,209,0.4),0 20px 56px rgba(191,202,209,0.2);
+--surface-gradient-card:linear-gradient(160deg,var(--slate-charcoal) 0%,var(--bg-surface-2) 100%); /* @kind other */
+--surface-gradient-hero:radial-gradient(circle at 26% 18%,rgba(232,96,12,0.22),transparent 55%),radial-gradient(circle at 82% 78%,rgba(191,202,209,0.16),transparent 50%),var(--reel-black); /* @kind other */
+--ease-out-cinema:cubic-bezier(0.16,1,0.3,1); /* @kind other */
+--duration-hover:200ms; /* @kind other */
+}

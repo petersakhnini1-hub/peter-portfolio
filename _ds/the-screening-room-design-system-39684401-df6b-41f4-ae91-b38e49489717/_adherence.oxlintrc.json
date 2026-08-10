@@ -1,0 +1,259 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/buttons/**",
+              "components/card/**",
+              "components/chip/**",
+              "components/forms/**",
+              "components/navigation/**",
+              "ui_kits/portfolio/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:JetBrains Mono))/i]",
+        "message": "Font not provided by the design system. Available: JetBrains Mono."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|children|onClick|disabled|type|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: variant, children, onClick, disabled, type."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:primary|ghost)$/]",
+        "message": "<Button> variant must be one of 'primary' | 'ghost'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:button|submit)$/]",
+        "message": "<Button> type must be one of 'button' | 'submit'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Chip'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|active|key|ref|className|style|children)$/]",
+        "message": "<Chip> doesn't accept that prop. Declared props: children, active."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Input'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|placeholder|type|error|disabled|multiline|key|ref|className|style|children)$/]",
+        "message": "<Input> doesn't accept that prop. Declared props: label, placeholder, type, error, disabled, multiline."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Nav'] > JSXAttribute > JSXIdentifier[name!=/^(?:wordmark|links|activeLink|ctaLabel|onCta|scrolled|key|ref|className|style|children)$/]",
+        "message": "<Nav> doesn't accept that prop. Declared props: wordmark, links, activeLink, ctaLabel, onCta, scrolled."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ReelCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|date|duration|platforms|thumbnailColor|onClick|key|ref|className|style|children)$/]",
+        "message": "<ReelCard> doesn't accept that prop. Declared props: title, date, duration, platforms, thumbnailColor, onClick."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Button": {
+        "replaces": []
+      },
+      "Chip": {
+        "replaces": []
+      },
+      "Input": {
+        "replaces": []
+      },
+      "Nav": {
+        "replaces": []
+      },
+      "ReelCard": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent-metadata",
+      "--accent-metadata-hover",
+      "--accent-primary",
+      "--accent-primary-hover",
+      "--ash-grey",
+      "--bg-page",
+      "--bg-surface",
+      "--bg-surface-2",
+      "--border-hairline",
+      "--border-width-hairline",
+      "--duration-hover",
+      "--ease-out-cinema",
+      "--error-red",
+      "--font-body",
+      "--font-display",
+      "--font-mono",
+      "--grain-line",
+      "--layout-max-width",
+      "--layout-padding-inline",
+      "--layout-padding-inline-md",
+      "--nav-height",
+      "--projection-white",
+      "--radius-lg",
+      "--radius-md",
+      "--radius-none",
+      "--radius-pill",
+      "--radius-sm",
+      "--reel-black",
+      "--section-gap",
+      "--shadow-elevation-1",
+      "--shadow-elevation-2",
+      "--shadow-elevation-3",
+      "--shadow-glow-gray",
+      "--shadow-glow-orange",
+      "--shadow-none",
+      "--signal-gray",
+      "--signal-gray-deep",
+      "--signal-orange",
+      "--signal-orange-deep",
+      "--slate-charcoal",
+      "--space-2xl",
+      "--space-lg",
+      "--space-md",
+      "--space-sm",
+      "--space-xl",
+      "--space-xs",
+      "--surface-gradient-card",
+      "--surface-gradient-hero",
+      "--text-body-leading",
+      "--text-body-measure",
+      "--text-body-size",
+      "--text-body-weight",
+      "--text-display-leading",
+      "--text-display-size",
+      "--text-display-tracking",
+      "--text-display-weight",
+      "--text-error",
+      "--text-headline-leading",
+      "--text-headline-size",
+      "--text-headline-tracking",
+      "--text-headline-weight",
+      "--text-label-leading",
+      "--text-label-size",
+      "--text-label-tracking",
+      "--text-label-weight",
+      "--text-mono-leading",
+      "--text-mono-size",
+      "--text-mono-tracking",
+      "--text-mono-weight",
+      "--text-primary",
+      "--text-secondary",
+      "--text-title-leading",
+      "--text-title-size",
+      "--text-title-weight"
+    ],
+    "tokenKinds": {
+      "--reel-black": "color",
+      "--slate-charcoal": "color",
+      "--grain-line": "color",
+      "--ash-grey": "color",
+      "--projection-white": "color",
+      "--signal-orange": "color",
+      "--signal-orange-deep": "color",
+      "--signal-gray": "color",
+      "--signal-gray-deep": "color",
+      "--error-red": "color",
+      "--bg-page": "color",
+      "--bg-surface": "color",
+      "--bg-surface-2": "color",
+      "--border-hairline": "color",
+      "--text-primary": "font",
+      "--text-secondary": "font",
+      "--accent-primary": "color",
+      "--accent-primary-hover": "color",
+      "--accent-metadata": "color",
+      "--accent-metadata-hover": "color",
+      "--text-error": "font",
+      "--font-display": "font",
+      "--font-body": "font",
+      "--font-mono": "font",
+      "--text-display-size": "font",
+      "--text-display-weight": "font",
+      "--text-display-leading": "font",
+      "--text-display-tracking": "font",
+      "--text-headline-size": "font",
+      "--text-headline-weight": "font",
+      "--text-headline-leading": "font",
+      "--text-headline-tracking": "font",
+      "--text-title-size": "font",
+      "--text-title-weight": "font",
+      "--text-title-leading": "font",
+      "--text-body-size": "font",
+      "--text-body-weight": "font",
+      "--text-body-leading": "font",
+      "--text-body-measure": "font",
+      "--text-label-size": "font",
+      "--text-label-weight": "font",
+      "--text-label-leading": "font",
+      "--text-label-tracking": "font",
+      "--text-mono-size": "font",
+      "--text-mono-weight": "font",
+      "--text-mono-leading": "font",
+      "--text-mono-tracking": "font",
+      "--space-xs": "spacing",
+      "--space-sm": "spacing",
+      "--space-md": "spacing",
+      "--space-lg": "spacing",
+      "--space-xl": "spacing",
+      "--space-2xl": "spacing",
+      "--layout-max-width": "spacing",
+      "--layout-padding-inline": "spacing",
+      "--layout-padding-inline-md": "spacing",
+      "--section-gap": "spacing",
+      "--radius-none": "radius",
+      "--radius-sm": "radius",
+      "--radius-md": "radius",
+      "--radius-lg": "radius",
+      "--radius-pill": "radius",
+      "--border-width-hairline": "spacing",
+      "--nav-height": "spacing",
+      "--shadow-none": "shadow",
+      "--shadow-elevation-1": "shadow",
+      "--shadow-elevation-2": "shadow",
+      "--shadow-elevation-3": "shadow",
+      "--shadow-glow-orange": "shadow",
+      "--shadow-glow-gray": "shadow",
+      "--surface-gradient-card": "other",
+      "--surface-gradient-hero": "other",
+      "--ease-out-cinema": "other",
+      "--duration-hover": "other"
+    },
+    "fontFamilies": [
+      "JetBrains Mono"
+    ]
+  }
+}
