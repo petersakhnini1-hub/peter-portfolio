@@ -50,20 +50,12 @@ function useActiveSection(ids) {
 
 function NavBar() {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
   const active = useActiveSection(NAV_LINKS.map(([, id]) => id));
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 40);
     on(); window.addEventListener("scroll", on, { passive: true });
     return () => window.removeEventListener("scroll", on);
   }, []);
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e) => { if (e.key === "Escape") setOpen(false); };
-    document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
-  }, [open]);
   return (
     <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
       <div className="wrap">
@@ -71,14 +63,7 @@ function NavBar() {
         <div style={{ display: "flex", alignItems: "center", gap: "var(--space-lg)" }}>
           <div className="navlinks">{NAV_LINKS.map(([l, id]) => <a key={id} href={"#" + id} className={active === id ? "active" : ""}>{l}</a>)}</div>
           <div className="navsocial">{SOCIALS.map(([l, href, icon]) => <a key={l} href={href} target="_blank" rel="noreferrer" aria-label={l}><img src={icon} alt="" className="social-icon" /></a>)}</div>
-          <button type="button" className="navburger" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen(o => !o)}>
-            <span />
-          </button>
         </div>
-      </div>
-      <div className={`navmobile${open ? " open" : ""}`} aria-hidden={!open}>
-        {NAV_LINKS.map(([l, id]) => <a key={id} href={"#" + id} className={active === id ? "active" : ""} tabIndex={open ? 0 : -1} onClick={() => setOpen(false)}>{l}</a>)}
-        <div className="navmobile-social">{SOCIALS.map(([l, href, icon]) => <a key={l} href={href} target="_blank" rel="noreferrer" aria-label={l} tabIndex={open ? 0 : -1}><img src={icon} alt="" className="social-icon" /></a>)}</div>
       </div>
     </nav>
   );
