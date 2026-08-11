@@ -2,7 +2,6 @@ const { Button, Chip, Input } = window.TheScreeningRoomDesignSystem_396844;
 const { useState, useEffect, useRef } = React;
 const { createPortal } = ReactDOM;
 
-const NAV_LINKS = [["About", "about"], ["Work", "work"]];
 const SOCIALS = [["LinkedIn", "https://www.linkedin.com/in/peter-sakhnini/", "uploads/pasted-1786395023930-0.png"], ["X", "https://x.com/PeterSMK2", "uploads/pasted-1786395033626-0.png"]];
 const TICKER_WORDS = ["Battlefield", "Short-form social content", "Cultural relevancy", "Cinematic editing", "Community focused", "EA DICE"];
 
@@ -33,24 +32,8 @@ function SectionHead({ eyebrow, title, note, noRule }) {
   );
 }
 
-function useActiveSection(ids) {
-  const [active, setActive] = useState(ids[0]);
-  useEffect(() => {
-    const els = ids.map(id => document.getElementById(id)).filter(Boolean);
-    if (!els.length) return;
-    const io = new IntersectionObserver((entries) => {
-      const visible = entries.filter(e => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-      if (visible[0]) setActive(visible[0].target.id);
-    }, { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] });
-    els.forEach(el => io.observe(el));
-    return () => io.disconnect();
-  }, [ids.join(",")]);
-  return active;
-}
-
 function NavBar() {
   const [scrolled, setScrolled] = useState(false);
-  const active = useActiveSection(NAV_LINKS.map(([, id]) => id));
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 40);
     on(); window.addEventListener("scroll", on, { passive: true });
@@ -60,10 +43,6 @@ function NavBar() {
     <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
       <div className="wrap">
         <span className="mark">Peter Sakhnini</span>
-        <div style={{ display: "flex", alignItems: "center", gap: "var(--space-lg)" }}>
-          <div className="navlinks">{NAV_LINKS.map(([l, id]) => <a key={id} href={"#" + id} className={active === id ? "active" : ""}>{l}</a>)}</div>
-          <div className="navsocial">{SOCIALS.map(([l, href, icon]) => <a key={l} href={href} target="_blank" rel="noreferrer" aria-label={l}><img src={icon} alt="" className="social-icon" /></a>)}</div>
-        </div>
       </div>
     </nav>
   );
