@@ -48,16 +48,25 @@ function useActiveSection(ids) {
   return active;
 }
 
+const NAV_FADE_DISTANCE = 320;
+
 function NavBar() {
-  const [scrolled, setScrolled] = useState(false);
+  const navRef = useRef(null);
   const active = useActiveSection(NAV_LINKS.map(([, id]) => id));
   useEffect(() => {
-    const on = () => setScrolled(window.scrollY > 40);
+    let raf = 0;
+    const on = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const p = Math.min(window.scrollY / NAV_FADE_DISTANCE, 1);
+        if (navRef.current) navRef.current.style.setProperty("--nav-o", String(p));
+      });
+    };
     on(); window.addEventListener("scroll", on, { passive: true });
-    return () => window.removeEventListener("scroll", on);
+    return () => { window.removeEventListener("scroll", on); cancelAnimationFrame(raf); };
   }, []);
   return (
-    <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
+    <nav ref={navRef} className="nav">
       <div className="wrap">
         <span className="mark">Peter Sakhnini</span>
         <div style={{ display: "flex", alignItems: "center", gap: "var(--space-lg)" }}>
