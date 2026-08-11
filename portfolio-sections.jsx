@@ -356,8 +356,8 @@ function StrategySection() {
 }
 
 const GAMES = [
-  { title: "Lost in Random", role: "Asset Vendor" },
   { title: "It Takes Two", role: "Asset Vendor" },
+  { title: "Lost in Random", role: "Asset Vendor" },
   { title: "Battlefield 2042", role: "Social Media Asset Producer" },
   { title: "Battlefield 2042", role: "Social Media Manager & Asset Producer" },
   { title: "Battlefield 6", role: "Global Social Media Manager & Cinematic Asset Producer" },
